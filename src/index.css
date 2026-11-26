@@ -1,0 +1,57 @@
+@import "tailwindcss";
+
+/* Initial light appearance. Theme selection and the modal mobile drawer are deferred. */
+:root {
+  font-family: system-ui, sans-serif;
+  color-scheme: light;
+  --background: #f7f9fc;
+  --surface: #ffffff;
+  --foreground: #182234;
+  --foreground-muted: #526178;
+  --border-subtle: #dce3ee;
+  --accent: #4365e8;
+  --selection-background: #e8edff;
+  --hover-background: #eef2fa;
+  --focus-ring: #2547c7;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--foreground-muted);
+  --color-subtle: var(--border-subtle);
+  --color-accent: var(--accent);
+  --color-selection: var(--selection-background);
+  --color-hover: var(--hover-background);
+}
+
+@layer base {
+  body {
+    margin: 0;
+    background: var(--background);
+    color: var(--foreground);
+    line-height: 1.5;
+    overflow-wrap: break-word;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+
+  [tabindex="-1"]:focus {
+    outline: 2px solid var(--focus-ring);
+    outline-offset: 2px;
+  }
+}
+
+@layer components {
+  .section-heading {
+    @apply scroll-mt-4 text-xl leading-7 font-semibold;
+  }
+
+  .content-panel {
+    @apply rounded-xl border border-subtle bg-surface p-4 sm:p-6;
+  }
+}
