@@ -1,6 +1,6 @@
 @import "tailwindcss";
 
-/* Initial light appearance. Theme selection and the modal mobile drawer are deferred. */
+/* Light is the fallback when device preference detection is unavailable. */
 :root {
   font-family: system-ui, sans-serif;
   color-scheme: light;
@@ -9,10 +9,25 @@
   --foreground: #182234;
   --foreground-muted: #526178;
   --border-subtle: #dce3ee;
+  --border-control: #748198;
   --accent: #4365e8;
   --selection-background: #e8edff;
   --hover-background: #eef2fa;
   --focus-ring: #2547c7;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --background: #10141e;
+  --surface: #1b2230;
+  --foreground: #f3f5fa;
+  --foreground-muted: #9da8bd;
+  --border-subtle: #344056;
+  --border-control: #7b8aa5;
+  --accent: #688bff;
+  --selection-background: #28365a;
+  --hover-background: #263145;
+  --focus-ring: #a9bbff;
 }
 
 @theme inline {
@@ -21,6 +36,7 @@
   --color-foreground: var(--foreground);
   --color-muted: var(--foreground-muted);
   --color-subtle: var(--border-subtle);
+  --color-control: var(--border-control);
   --color-accent: var(--accent);
   --color-selection: var(--selection-background);
   --color-hover: var(--hover-background);
