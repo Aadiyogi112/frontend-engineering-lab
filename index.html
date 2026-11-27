@@ -3,6 +3,30 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Keep resolution rules aligned with src/theme/theme.ts.
+         A future strict CSP must authorize this script with a hash/nonce or replace it. -->
+    <script>
+      (() => {
+        let preference = 'system'
+        try {
+          const saved = window.localStorage.getItem('financial-lab.theme')
+          if (saved === 'system' || saved === 'light' || saved === 'dark') preference = saved
+        } catch {
+          // Storage failure must not prevent system preference detection.
+        }
+        let resolved = preference
+        if (preference === 'system') {
+          resolved = 'light'
+          try {
+            resolved = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+          } catch {
+            // Light is the fallback when device preference detection is unavailable.
+          }
+        }
+        document.documentElement.dataset.theme = resolved
+        document.documentElement.style.colorScheme = resolved
+      })()
+    </script>
     <title>Financial Transaction Performance Lab</title>
   </head>
   <body>
